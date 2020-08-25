@@ -15,6 +15,7 @@ backend/.env
 backend/dist/
 backend/models/dist/
 backend/routes/dist/
+src/components/dist/
 
 # misc
 .DS_Store
