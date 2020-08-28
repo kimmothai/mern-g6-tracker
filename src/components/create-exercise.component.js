@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import Axios from 'axios';
 
 export default class CreateExercise extends Component {
     constructor(props) {
@@ -22,9 +23,16 @@ export default class CreateExercise extends Component {
     }
 
     componentDidMount() {
-        this.setState({
-            users: ['test user'],
-            username: 'test user'
+        let url = 'http://localhost:8888/users/'
+
+        Axios.get(url)
+            .then(response => {
+                if (response.data.length > 0) {
+                    this.setState({
+                    users: response.data.map(user => user.username),
+                    username: response.data[0].username
+                })
+            }
         })
     }
 
